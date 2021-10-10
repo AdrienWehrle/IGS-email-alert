@@ -17,7 +17,7 @@ import email
 from email.header import decode_header
 
 
-class EmailAlert(object):
+class EmailAlert:
     """
     Check for new FirstView articles and send email alert through a
     specified sender account.
