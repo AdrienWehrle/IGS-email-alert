@@ -1,6 +1,6 @@
 #+TITLE: Email alert for new FirstView articles in IGS journals
 
-A simple email alert to notify a list of email addresses for new FirstView articles in the journals of the International Glaciological Society (IGS). This tool is primarily intended for the IGS social media team in charge of posting new FirstView articles but can be generalised for any other use. 
+A simple email alert to notify a list of users for new FirstView articles in the journals of the International Glaciological Society (IGS). This tool is primarily intended for the IGS social media team in charge of posting new FirstView articles but can be generalised for any other use. 
 
 [[check_FirstView_articles.py]] can be run in a cron job, e.g. for each hour of the day:
 
