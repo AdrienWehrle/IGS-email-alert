@@ -159,9 +159,9 @@ class EmailAlert:
                         message_subject, encoding = decode_header(msg["Subject"])[0]
                     except TypeError:
 
-                        print('Email could not be decoded')
+                        print("Email could not be decoded")
                         continue
-                    
+
                     # select FirstView alert email
                     if message_subject == new_FirstView_subject:
 
@@ -211,8 +211,9 @@ class EmailAlert:
                 "span", attrs={"class": "date"}
             ).text
         except AttributeError:
-            print(f'No publication tag could be found at {journal_url}')
-            
+            print(f"No publication tag could be found at {journal_url}")
+            return None
+
         partlink_attr_a_tag = soup.find("a", attrs={"class": "part-link"})
 
         # reconstruct article URL
@@ -250,9 +251,7 @@ class EmailAlert:
 
                 # send email
                 s.sendmail(
-                    self.sender_user,
-                    self.sender_user,
-                    message.as_string(),
+                    self.sender_user, self.sender_user, message.as_string(),
                 )
 
                 # terminate SMTP session and close connection
