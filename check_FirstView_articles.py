@@ -153,9 +153,15 @@ class EmailAlert:
                     # parse a bytes email into a message object
                     msg = email.message_from_bytes(response[1])
 
-                    # decode email subject
-                    message_subject, encoding = decode_header(msg["Subject"])[0]
+                    try:
 
+                        # decode email subject
+                        message_subject, encoding = decode_header(msg["Subject"])[0]
+                    except TypeError:
+
+                        print('Email could not be decoded')
+                        continue
+                    
                     # select FirstView alert email
                     if message_subject == new_FirstView_subject:
 
@@ -199,9 +205,14 @@ class EmailAlert:
 
         # find element corresponding to last publication on webpage
         published_attr_li_tag = soup.find("li", attrs={"class": "published"})
-        date_attr_span_tag = published_attr_li_tag.find(
-            "span", attrs={"class": "date"}
-        ).text
+
+        try:
+            date_attr_span_tag = published_attr_li_tag.find(
+                "span", attrs={"class": "date"}
+            ).text
+        except AttributeError:
+            print(f'No publication tag could be found at {journal_url}')
+            
         partlink_attr_a_tag = soup.find("a", attrs={"class": "part-link"})
 
         # reconstruct article URL
